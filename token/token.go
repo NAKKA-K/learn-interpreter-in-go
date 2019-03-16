@@ -1,4 +1,4 @@
-package main
+package token
 
 // TokenType is data type
 type TokenType string
@@ -13,15 +13,15 @@ const (
 	ILLEGAL = "ILLEGAL"
 	EOF     = "EOF"
 
-	// 識別子 + リテラル
+	// identifier + literal
 	IDENT = "IDENT"
 	INT   = "INT"
 
-	// 演算子
+	// operator
 	ASSIGN = "="
 	PLUS   = "+"
 
-	// デリミタ
+	// delimiter
 	COMMA     = ","
 	SEMICOLON = ";"
 
@@ -30,7 +30,7 @@ const (
 	LBARAN = "{"
 	RBARAN = "}"
 
-	// キーワード
+	// keyword
 	FUCNTION = "FUNCTION"
 	LET      = "LET"
 )
