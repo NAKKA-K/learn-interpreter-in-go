@@ -10,13 +10,13 @@ type Node interface {
 // Statement are sentences in program
 type Statement interface {
 	Node
-	statementNode()
+	statementNode() // statementNode is dummy function for type verification
 }
 
 // Expression are the interface of things that generate values
 type Expression interface {
 	Node
-	expressionNode()
+	expressionNode() // expressionNode is dummy function for type verification
 }
 
 // Program is root node of AST
@@ -39,11 +39,9 @@ type LetStatement struct {
 	Value Expression
 }
 
-// statementNode is dummy function for type verification
-func (ls *LetStatement) statementNode() {}
-
 // TokenLiteral return "let"
 func (ls *LetStatement) TokenLiteral() string { return ls.Token.Literal }
+func (ls *LetStatement) statementNode()       {}
 
 // Identifier is for identifer expression(x, tmp, etc...)
 type Identifier struct {
@@ -51,8 +49,7 @@ type Identifier struct {
 	Value string
 }
 
-// expressionNode is dummy function for type verification
-func (i *Identifier) expressionNode() {}
-
 // TokenLiteral return variable name(x, tmp, etc...)
 func (i *Identifier) TokenLiteral() string { return i.Token.Literal }
+func (i *Identifier) expressionNode()      {}
+
