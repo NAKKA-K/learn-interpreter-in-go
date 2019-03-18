@@ -1,6 +1,8 @@
 package parser
 
 import (
+	"fmt"
+
 	"github.com/NAKKA-K/learn-interpreter-in-go/ast"
 	"github.com/NAKKA-K/learn-interpreter-in-go/lexer"
 	"github.com/NAKKA-K/learn-interpreter-in-go/token"
@@ -10,19 +12,33 @@ import (
 type Parser struct {
 	l *lexer.Lexer
 
+	errors    []string
 	curToken  token.Token
 	peekToken token.Token
 }
 
 // New generated parser be returned
 func New(l *lexer.Lexer) *Parser {
-	p := &Parser{l: l}
+	p := &Parser{
+		l:      l,
+		errors: []string{},
+	}
 
 	// Set token to curToken and peekToken
 	p.nextToken()
 	p.nextToken()
 
 	return p
+}
+
+// Errors return parser.errors
+func (p *Parser) Errors() []string {
+	return p.errors
+}
+
+func (p *Parser) peekError(t token.TokenType) {
+	msg := fmt.Sprintf("expected next token to be %s, got %s insted", t, p.peekToken.Type)
+	p.errors = append(p.errors, msg)
 }
 
 func (p *Parser) nextToken() {
@@ -89,5 +105,6 @@ func (p *Parser) expectPeek(t token.TokenType) bool {
 		p.nextToken()
 		return true
 	}
+	p.peekError(t) // not expected token
 	return false
 }
