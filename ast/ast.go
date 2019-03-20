@@ -123,3 +123,14 @@ func (es *ExpressionStatement) String() string {
 	return ""
 }
 func (es *ExpressionStatement) statementNode() {}
+
+// IntegerLiteral for integer literal
+type IntegerLiteral struct {
+	Token token.Token
+	Value int64
+}
+
+// TokenLiteral return integer
+func (il *IntegerLiteral) TokenLiteral() string { return il.Token.Literal }
+func (il *IntegerLiteral) String() string       { return il.Token.Literal }
+func (il *IntegerLiteral) expressionNode()      {}
