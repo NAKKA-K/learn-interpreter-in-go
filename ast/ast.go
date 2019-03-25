@@ -137,7 +137,7 @@ func (il *IntegerLiteral) expressionNode()      {}
 
 // PrefixExpression for prefix of expression
 type PrefixExpression struct {
-	Token    token.Token // For exsample, !, -, etc...
+	Token    token.Token // For example, !, -, etc...
 	Operator string
 	Right    Expression
 }
@@ -155,3 +155,26 @@ func (pe *PrefixExpression) String() string {
 	return out.String()
 }
 func (pe *PrefixExpression) expressionNode() {}
+
+// InfixExpression for 'expression operator expression'
+type InfixExpression struct {
+	Token    token.Token // For example, +, !=, etc...
+	Left     Expression
+	Operator string
+	Right    Expression
+}
+
+// TokenLiteral return  +, !=, etc...
+func (oe *InfixExpression) TokenLiteral() string { return oe.Token.Literal }
+func (oe *InfixExpression) String() string {
+	var out bytes.Buffer
+
+	out.WriteString("(")
+	out.WriteString(oe.Left.String())
+	out.WriteString(" " + oe.Operator + " ")
+	out.WriteString(oe.Right.String())
+	out.WriteString(")")
+
+	return out.String()
+}
+func (oe *InfixExpression) expressionNode() {}
