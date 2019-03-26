@@ -178,3 +178,14 @@ func (oe *InfixExpression) String() string {
 	return out.String()
 }
 func (oe *InfixExpression) expressionNode() {}
+
+// Boolean for true or false
+type Boolean struct {
+	Token token.Token
+	Value bool
+}
+
+// TokenLiteral return 'true' or 'false'
+func (b *Boolean) TokenLiteral() string { return b.Token.Literal }
+func (b *Boolean) String() string       { return b.Token.Literal }
+func (b *Boolean) expressionNode()      {}
