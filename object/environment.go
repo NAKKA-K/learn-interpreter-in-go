@@ -1,7 +1,7 @@
 package object
 
-// NewEnviroment return Environment object
-func NewEnviroment() *Environment {
+// NewEnvironment return Environment object
+func NewEnvironment() *Environment {
 	s := make(map[string]Object)
 	return &Environment{store: s}
 }
