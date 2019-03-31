@@ -16,6 +16,7 @@ const (
 	BOOLEAN_OBJ      = "BOOLEAN"
 	NULL_OBJ         = "NULL"
 	RETURN_VALUE_OBJ = "RETURN_VALUE_OBJ"
+	ERROR_OBJ        = "ERROR"
 )
 
 // Integer is from IntegerLiteral
@@ -51,3 +52,12 @@ type ReturnValue struct {
 // Inspect return Inspect() of object
 func (rv *ReturnValue) Inspect() string  { return rv.Value.Inspect() }
 func (rv *ReturnValue) Type() ObjectType { return RETURN_VALUE_OBJ }
+
+// Error include error message
+type Error struct {
+	Message string
+}
+
+// Inspect return "ERROR: ~"
+func (e *Error) Inspect() string  { return "ERROR: " + e.Message }
+func (e *Error) Type() ObjectType { return ERROR_OBJ }
