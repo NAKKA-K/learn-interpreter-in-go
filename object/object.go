@@ -108,6 +108,9 @@ func (s *String) Inspect() string  { return s.Value }
 func (s *String) Type() ObjectType { return STRING_OBJ }
 
 // BuiltinFunction is builtin function type
+type BuiltinFunction func(args ...Object) Object
+
+// Builtin is builtin function type
 type Builtin struct {
 	Fn BuiltinFunction
 }
