@@ -25,6 +25,7 @@ const (
 	ERROR_OBJ        = "ERROR"
 	FUNCTION_OBJ     = "FUNCTION"
 	STRING_OBJ       = "STRING"
+	BUILTIN_OBJ      = "BUILTIN"
 )
 
 // Integer is from IntegerLiteral
@@ -105,3 +106,12 @@ type String struct {
 // Inspect return "<string>"
 func (s *String) Inspect() string  { return s.Value }
 func (s *String) Type() ObjectType { return STRING_OBJ }
+
+// BuiltinFunction is builtin function type
+type Builtin struct {
+	Fn BuiltinFunction
+}
+
+// Inspect return "builtin function
+func (b *Builtin) Inspect() string  { return "builtin function" }
+func (b *Builtin) Type() ObjectType { return BUILTIN_OBJ }
