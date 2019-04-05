@@ -116,7 +116,7 @@ type Builtin struct {
 	Fn BuiltinFunction
 }
 
-// Inspect return "builtin function
+// Inspect return "builtin function"
 func (b *Builtin) Inspect() string  { return "builtin function" }
 func (b *Builtin) Type() ObjectType { return BUILTIN_OBJ }
 
