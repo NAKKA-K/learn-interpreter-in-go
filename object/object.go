@@ -206,5 +206,5 @@ func (h *Hash) Type() ObjectType { return HASH_OBJ }
 
 // Hashable is interface of Hash
 type Hashable interface {
-	HashKeu() HashKey
+	HashKey() HashKey
 }
