@@ -330,6 +330,38 @@ func TestBuiltinFunction(t *testing.T) {
 		{`rest([1, 2, 3])`, []int{2, 3}},
 		{`rest([])`, nil},
 		{`push(1, 1)`, "argument to `push` must be ARRAY, got INTEGER"},
+		{
+			`
+			let map = fn(arr, f) {
+				let iter = fn(arr, accumulated) {
+					if (len(arr) == 0) {
+						accumulated
+					} else {
+						iter(rest(arr), push(accumulated, f(first(arr))));
+					}
+				};
+				iter(arr, [])
+			};
+			map([1, 2, 3], fn(x) { x + 2 });
+			`,
+			[]int{2, 4, 6},
+		},
+		{
+			`
+			let reduce = fn(arr, initial, f) {
+				let iter = fn(arr, result) {
+					if (len(arr) == 0) {
+						result
+					} else {
+						iter(rest(arr), f(result, first(arr)));
+					}
+				};
+				iter(arr, initial)
+			};
+			reduce([1, 2, 3], 0, fn(initial, el) { initial + el });
+			`,
+			6,
+		},
 	}
 
 	for _, tt := range tests {
