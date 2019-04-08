@@ -366,6 +366,7 @@ func TestBuiltinFunction(t *testing.T) {
 			`,
 			6,
 		},
+		{`puts("Hello world")`, nil},
 	}
 
 	for _, tt := range tests {
