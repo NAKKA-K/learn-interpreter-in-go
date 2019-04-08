@@ -29,6 +29,7 @@ const (
 	BUILTIN_OBJ      = "BUILTIN"
 	ARRAY_OBJ        = "ARRAY"
 	HASH_OBJ         = "HASH"
+	QUOTE_OBJ        = "QUOTE"
 )
 
 // Integer is from IntegerLiteral
@@ -208,3 +209,14 @@ func (h *Hash) Type() ObjectType { return HASH_OBJ }
 type Hashable interface {
 	HashKey() HashKey
 }
+
+// Quote is macro system type
+type Quote struct {
+	Node ast.Node
+}
+
+// Inspect return "QUOTE(<Node>)"
+func (q *Quote) Inspect() string {
+	return "QUOTE(" + q.Node.String() + ")"
+}
+func (q *Quote) Type() ObjectType { return QUOTE_OBJ }
